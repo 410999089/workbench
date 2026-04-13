@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶哥的搬砖生涯 - 工作台</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            opacity: 0.9;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            color: #333;
+            margin-bottom: 16px;
+            font-size: 1.3em;
+        }
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .task-list {
+            list-style: none;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        .task-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        .status-pending { background: #ffc107; }
+        .status-done { background: #28a745; }
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .file-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .file-icon {
+            font-size: 24px;
+        }
+        .status-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .ai-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ai-dot {
+            width: 10px;
+            height: 10px;
+            background: #28a745;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧱 叶哥的搬砖生涯</h1>
+            <p>智能工作台 - 让AI帮你干活</p>
+        </div>
+
+        <div class="card">
+            <h2>📁 文件上传</h2>
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <p style="font-size: 48px; margin-bottom: 16px;">📤</p>
+                <p style="color: #666;">点击或拖拽文件到此处上传</p>
+                <p style="color: #999; font-size: 14px; margin-top: 8px;">支持 PDF、Word、Excel、图片等格式</p>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple>
+        </div>
+
+        <div class="card">
+            <h2>📋 待办任务</h2>
+            <ul class="task-list">
+                <li class="task-item">
+                    <span class="task-status status-pending"></span>
+                    <span>等待上传文件...</span>
+                </li>
+            </ul>
+            <div style="margin-top: 16px;">
+                <input type="text" placeholder="输入新任务..." style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; width: 70%;">
+                <button class="btn" style="margin-left: 8px;">添加</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📂 已上传文件</h2>
+            <div class="file-list">
+                <div class="file-item">
+                    <span class="file-icon">📄</span>
+                    <span>暂无文件</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="ai-status">
+                <div class="ai-dot"></div>
+                <span>AI 助手在线</span>
+            </div>
+            <span style="color: #666;">版本 1.0.0</span>
+        </div>
+    </div>
+
+    <script>
+        // 简单的交互逻辑
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                alert('已选择 ' + files.length + ' 个文件，正在上传...');
+            }
+        });
+    </script>
+</body>
+</html>
