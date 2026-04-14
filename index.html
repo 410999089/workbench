@@ -12,179 +12,466 @@
             min-height: 100vh;
             padding: 20px;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .header p {
-            opacity: 0.9;
-        }
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        .card h2 {
-            color: #333;
-            margin-bottom: 16px;
-            font-size: 1.3em;
-        }
-        .upload-area {
-            border: 2px dashed #ddd;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .stats { display: flex; gap: 20px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
+        .stat-item { background: rgba(255,255,255,0.2); padding: 15px 30px; border-radius: 12px; text-align: center; }
+        .stat-value { font-size: 2em; font-weight: bold; }
+        .stat-label { opacity: 0.9; }
+        .card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .card h2 { color: #333; margin-bottom: 16px; font-size: 1.3em; display: flex; align-items: center; gap: 8px; }
+        .card h2 .badge { font-size: 12px; background: #667eea; color: white; padding: 2px 8px; border-radius: 10px; }
+        .card h2 .badge.warning { background: #dc3545; }
+        .card h2 .badge.info { background: #28a745; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; transition: transform 0.2s; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-sm { padding: 6px 12px; font-size: 14px; }
+        .btn-outline { background: white; color: #667eea; border: 2px solid #667eea; }
+        .task-list { list-style: none; }
+        .task-item { display: flex; align-items: flex-start; padding: 12px; border-bottom: 1px solid #eee; transition: background 0.2s; flex-wrap: wrap; gap: 8px; }
+        .task-item:hover { background: #f8f9fa; }
+        .task-item:last-child { border-bottom: none; }
+        .task-checkbox { width: 20px; height: 20px; margin-top: 2px; cursor: pointer; flex-shrink: 0; }
+        .task-content { flex: 1; min-width: 200px; }
+        .task-title { font-weight: 500; color: #333; }
+        .task-title.done { text-decoration: line-through; color: #999; }
+        .task-meta { font-size: 12px; color: #666; margin-top: 4px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .task-priority { padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+        .priority-p0 { background: #dc3545; color: white; }
+        .priority-p1 { background: #fd7e14; color: white; }
+        .priority-p2 { background: #ffc107; color: #333; }
+        .priority-high { background: #dc3545; color: white; }
+        .priority-medium { background: #fd7e14; color: white; }
+        .priority-low { background: #28a745; color: white; }
+        .priority-normal { background: #6c757d; color: white; }
+        .task-overdue { color: #dc3545; }
+        .task-type { padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+        .type-system { background: #e7f3ff; color: #0066cc; }
+        .type-project { background: #fff3cd; color: #856404; }
+        .type-manual { background: #d4edda; color: #155724; }
+        
+        /* 文件链接 */
+        .file-link { 
+            color: #667eea; 
+            text-decoration: none; 
             cursor: pointer;
-            transition: all 0.3s;
+            padding: 2px 6px;
+            background: #f0f4ff;
+            border-radius: 4px;
+            font-size: 11px;
         }
-        .upload-area:hover {
-            border-color: #667eea;
-            background: #f8f9ff;
-        }
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.2s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-        .task-list {
-            list-style: none;
-        }
-        .task-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-        .task-item:last-child {
-            border-bottom: none;
-        }
-        .task-status {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 12px;
-        }
-        .status-pending { background: #ffc107; }
-        .status-done { background: #28a745; }
-        .file-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-        }
-        .file-item {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .file-icon {
-            font-size: 24px;
-        }
-        .status-bar {
-            background: white;
-            border-radius: 12px;
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .ai-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .ai-dot {
-            width: 10px;
-            height: 10px;
-            background: #28a745;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+        .file-link:hover { background: #e0e8ff; text-decoration: underline; }
+        .file-link::before { content: '📎 '; }
+        
+        .project-section { border-left: 4px solid #dc3545; padding-left: 16px; margin-bottom: 12px; background: #fff8f8; padding: 12px; border-radius: 0 8px 8px 0; }
+        .project-section .task-title { color: #dc3545; font-size: 14px; }
+        
+        .empty-state { text-align: center; padding: 40px; color: #999; }
+        .footer { text-align: center; color: rgba(255,255,255,0.7); margin-top: 40px; font-size: 14px; }
+        .category-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; background: #e9ecef; color: #495057; margin-right: 8px; }
+        
+        /* 添加任务表单 */
+        .add-task-form { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .add-task-form input { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; flex: 1; min-width: 200px; }
+        .add-task-form select { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+        
+        /* 标签页 */
+        .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .tab { padding: 8px 16px; border-radius: 20px; cursor: pointer; background: #e9ecef; color: #495057; transition: all 0.2s; border: none; font-size: 14px; }
+        .tab:hover { background: #dee2e6; }
+        .tab.active { background: #667eea; color: white; }
+        
+        /* 筛选器 */
+        .filters { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+        .filter-group { display: flex; gap: 8px; align-items: center; }
+        .filter-group label { font-size: 14px; color: #666; }
+        .filter-group select { padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+        
+        /* 模态框 */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 24px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .modal h3 { margin-bottom: 16px; color: #333; }
+        .modal p { color: #666; margin-bottom: 12px; line-height: 1.6; }
+        .modal-buttons { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧱 叶哥的搬砖生涯</h1>
-            <p>智能工作台 - 让AI帮你干活</p>
-        </div>
-
-        <div class="card">
-            <h2>📁 文件上传</h2>
-            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                <p style="font-size: 48px; margin-bottom: 16px;">📤</p>
-                <p style="color: #666;">点击或拖拽文件到此处上传</p>
-                <p style="color: #999; font-size: 14px; margin-top: 8px;">支持 PDF、Word、Excel、图片等格式</p>
-            </div>
-            <input type="file" id="fileInput" style="display: none;" multiple>
-        </div>
-
-        <div class="card">
-            <h2>📋 待办任务</h2>
-            <ul class="task-list">
-                <li class="task-item">
-                    <span class="task-status status-pending"></span>
-                    <span>等待上传文件...</span>
-                </li>
-            </ul>
-            <div style="margin-top: 16px;">
-                <input type="text" placeholder="输入新任务..." style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; width: 70%;">
-                <button class="btn" style="margin-left: 8px;">添加</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>📂 已上传文件</h2>
-            <div class="file-list">
-                <div class="file-item">
-                    <span class="file-icon">📄</span>
-                    <span>暂无文件</span>
+            <h1>📋 叶哥的搬砖生涯</h1>
+            <p>躺平式自动化办公系统</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalTasks">0</div>
+                    <div class="stat-label">总任务</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="pendingTasks">0</div>
+                    <div class="stat-label">待办</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="doneTasks">0</div>
+                    <div class="stat-label">已完成</div>
                 </div>
             </div>
         </div>
 
-        <div class="status-bar">
-            <div class="ai-status">
-                <div class="ai-dot"></div>
-                <span>AI 助手在线</span>
+        <!-- 标签页 -->
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" data-type="all">📋 全部</button>
+                <button class="tab" data-type="project_issue">⚠️ 项目问题</button>
+                <button class="tab" data-type="system">⚙️ 系统任务</button>
+                <button class="tab" data-type="manual">✋ 手工任务</button>
             </div>
-            <span style="color: #666;">版本 1.0.0</span>
+            
+            <!-- 筛选器 -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>分类:</label>
+                    <select id="filterCategory" onchange="applyFilters()">
+                        <option value="">全部</option>
+                        <option value="技术开发">技术开发</option>
+                        <option value="前端开发">前端开发</option>
+                        <option value="功能开发">功能开发</option>
+                        <option value="系统配置">系统配置</option>
+                        <option value="问题修复">问题修复</option>
+                        <option value="运维">运维</option>
+                        <option value="架构决策">架构决策</option>
+                        <option value="项目管理">项目管理</option>
+                        <option value="数据分析">数据分析</option>
+                        <option value="系统测试">系统测试</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>优先级:</label>
+                    <select id="filterPriority" onchange="applyFilters()">
+                        <option value="">全部</option>
+                        <option value="P0">P0</option>
+                        <option value="P1">P1</option>
+                        <option value="P2">P2</option>
+                        <option value="高">高</option>
+                        <option value="中">中</option>
+                        <option value="低">低</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 任务列表 -->
+            <ul class="task-list" id="taskList">
+                <li class="empty-state">加载中...</li>
+            </ul>
+            
+            <!-- 添加手工任务 -->
+            <div class="add-task-form">
+                <input type="text" id="newTaskTitle" placeholder="输入任务内容（手工任务）..." onkeypress="if(event.key==='Enter')addManualTask()">
+                <select id="newTaskPriority">
+                    <option value="普通">普通</option>
+                    <option value="低">低</option>
+                    <option value="中">中</option>
+                    <option value="高">高</option>
+                    <option value="P2">P2</option>
+                    <option value="P1">P1</option>
+                    <option value="P0">P0</option>
+                </select>
+                <input type="date" id="newTaskDate">
+                <button class="btn btn-sm" onclick="addManualTask()">✋ 添加</button>
+            </div>
+        </div>
+
+        <!-- 快捷操作 -->
+        <div class="card">
+            <h2>⚡ 快捷操作</h2>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="btn btn-sm" onclick="showAllTasks()">📋 全部</button>
+                <button class="btn btn-sm" onclick="showP0Tasks()">🔥 P0紧急</button>
+                <button class="btn btn-sm" onclick="showOverdueTasks()">⚠️ 已过期</button>
+                <button class="btn btn-sm btn-outline" onclick="markAllDone()">☑️ 全部完成</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>更新时间: <span id="updateTime">2026-04-14</span> | 由 Coze Agent 自动同步</p>
+        </div>
+    </div>
+
+    <!-- 详情模态框 -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">任务详情</h3>
+            <div id="modalContent"></div>
+            <div class="modal-buttons">
+                <button class="btn" onclick="closeModal()" style="background: #6c757d;">关闭</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // 简单的交互逻辑
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const files = e.target.files;
-            if (files.length > 0) {
-                alert('已选择 ' + files.length + ' 个文件，正在上传...');
+        // 任务数据（从云端同步）
+        const tasks = [{"id":"task_001","title":"【文件关联】优化项目名称自动提取算法","description":"当前项目名称提取不准确，如'保安'被拆成3个项目。需要优化正则匹配规则，提高项目识别准确率","due_date":"2026-04-20","category":"技术开发","priority":"P0","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_002","title":"【文件关联】添加前端项目视图","description":"实现项目看板视图，支持查看项目全貌、生命周期状态、关联文件列表","due_date":"2026-04-25","category":"前端开发","priority":"P1","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_003","title":"【文件关联】实现完整性检查提醒","description":"项目缺少'报账/发票'或'验收报告'时，自动提醒用户补充材料","due_date":"2026-04-30","category":"功能开发","priority":"P1","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_004","title":"【本地客户端】安装并配置API客户端","description":"在本地Hermes Agent安装cloud_client.py，实现与云端API通信","due_date":"2026-04-16","category":"系统配置","priority":"P0","status":"待办","source":"本地客户端开发","task_type":"system","file_path":"/local_client/cloud_client.py"},{"id":"task_005","title":"【本地客户端】解决API Key配置问题","description":"用户反馈本地Hermes API Key配置有问题，需要排查并解决连接问题","due_date":"2026-04-15","category":"问题修复","priority":"P0","status":"待办","source":"用户反馈","task_type":"system","file_path":null},{"id":"task_006","title":"【本地客户端】创建云端同步Skill","description":"给本地Hermes创建cloud_sync Skill，实现本地操作自动同步到云端API","due_date":"2026-04-18","category":"功能开发","priority":"P1","status":"待办","source":"协作方案","task_type":"system","file_path":null},{"id":"task_007","title":"【API服务】验证端口8080公网访问","description":"检查云电脑端口8080是否对公网开放，如未开放需配置内网穿透","due_date":"2026-04-15","category":"运维","priority":"P0","status":"待办","source":"API服务搭建","task_type":"system","file_path":"/api_server/cloud_api.py"},{"id":"task_008","title":"【API服务】配置ngrok内网穿透","description":"如果端口未开放，配置ngrok穿透，使本地客户端能访问云端API","due_date":"2026-04-16","category":"运维","priority":"P1","status":"待办","source":"API服务搭建","task_type":"system","file_path":null},{"id":"task_009","title":"【工作台】实现项目金额统计","description":"从已上传文件中提取金额，生成项目支出统计报表","due_date":"2026-04-25","category":"数据分析","priority":"P1","status":"待办","source":"需求分析","task_type":"system","file_path":"/analyze_relations.py"},{"id":"task_010","title":"【工作台】添加文件上传自动分类","description":"上传文件时自动识别类型(合同/发票/通知)，分配到正确分类","due_date":"2026-04-20","category":"功能开发","priority":"P1","status":"待办","source":"需求分析","task_type":"system","file_path":null},{"id":"task_011","title":"【工作台】实现合同生命周期可视化","description":"用时间轴展示合同从签订到验收的完整生命周期","due_date":"2026-04-30","category":"前端开发","priority":"P2","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_012","title":"【协作】确定本地Hermes协作模式","description":"决定采用方案：API客户端模式 or 任务队列模式？","due_date":"2026-04-15","category":"架构决策","priority":"P0","status":"待办","source":"协作方案","task_type":"system","file_path":null},{"id":"task_013","title":"【协作】测试本地→云端指令执行流程","description":"完整测试：本地Hermes接收指令→调用API→执行文件操作→上报结果","due_date":"2026-04-18","category":"系统测试","priority":"P1","status":"待办","source":"协作方案","task_type":"system","file_path":"/local_client/simulator.py"},{"id":"issue_001","title":"电梯维保 2024-2026年度 第1年 合同书.pdf 缺少验收报告","description":"电梯维保2024-2026年度，缺少设备验收报告","due_date":"2026-04-30","category":"项目管理","priority":"高","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/电梯维保 2024-2026年度 第1年 合同书.pdf"},{"id":"issue_002","title":"省中心机房电源线路改造合同书.docx 缺少报账/发票","description":"项目有合同但未找到报销/发票文件","due_date":"2026-04-30","category":"项目管理","priority":"高","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/省中心机房电源线路改造 2025-2025年度 第1年 合同书.docx"},{"id":"issue_003","title":"保安 2025-2027年度 第2年 合同书.pdf 缺少报销单据","description":"保安服务2025-2027第2年合同已签订，缺少对应报销单据","due_date":"2026-05-31","category":"项目管理","priority":"中","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/保安 2025-2027年度 第2年 合同书.pdf"},{"id":"issue_004","title":"四川省体育彩票管理中心UPS技术服务合同-验收.pdf 缺少发票","description":"UPS技术服务合同已验收，缺少发票","due_date":"2026-04-20","category":"项目管理","priority":"中","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/四川省体育彩票管理中心UPS技术服务合同-验收.pdf"},{"id":"test001","title":"审核报销单","description":"","due_date":"2026-04-30","category":"其他","priority":"普通","status":"待办","source":"测试","task_type":"manual","file_path":null},{"id":"test002","title":"跟进合同付款","description":"","due_date":"2026-04-25","category":"其他","priority":"普通","status":"待办","source":"测试","task_type":"manual","file_path":null}];
+
+        let currentFilter = 'all';
+        let currentCategory = '';
+        let currentPriority = '';
+
+        // 渲染任务列表
+        function renderTasks() {
+            const taskList = document.getElementById('taskList');
+            
+            const filteredTasks = tasks.filter(t => {
+                if (currentFilter !== 'all' && t.task_type !== currentFilter) return false;
+                if (currentCategory && t.category !== currentCategory) return false;
+                if (currentPriority && t.priority !== currentPriority) return false;
+                return true;
+            });
+
+            if (filteredTasks.length === 0) {
+                taskList.innerHTML = '<li class="empty-state">暂无任务</li>';
+                return;
             }
+
+            taskList.innerHTML = filteredTasks.map(task => {
+                const isDone = task.status === '已完成';
+                const priorityClass = getPriorityClass(task.priority);
+                const typeClass = getTypeClass(task.task_type);
+                const isOverdue = new Date(task.due_date) < new Date() && !isDone;
+                const typeIcon = getTypeIcon(task.task_type);
+                
+                // 文件链接（有file_path才显示）
+                const fileLink = task.file_path 
+                    ? `<span class="file-link" onclick="openFile('${task.file_path}')">查看文件</span>` 
+                    : '';
+                
+                return `
+                    <li class="task-item ${task.task_type === 'project_issue' ? 'project-section' : ''}">
+                        <input type="checkbox" class="task-checkbox" ${isDone ? 'checked' : ''} onchange="toggleTask('${task.id}')">
+                        <div class="task-content" onclick="showTaskDetail('${task.id}')" style="cursor:pointer;">
+                            <div class="task-title ${isDone ? 'done' : ''}">${typeIcon} ${task.title}</div>
+                            <div class="task-meta">
+                                <span class="task-priority ${priorityClass}">${task.priority}</span>
+                                <span class="task-type ${typeClass}">${getTypeLabel(task.task_type)}</span>
+                                <span class="category-tag">${task.category}</span>
+                                <span ${isOverdue ? 'class="task-overdue"' : ''}>📅 ${task.due_date}</span>
+                                ${fileLink}
+                            </div>
+                        </div>
+                    </li>
+                `;
+            }).join('');
+
+            updateStats();
+        }
+
+        function getPriorityClass(priority) {
+            const map = {
+                'P0': 'priority-p0', '高': 'priority-high',
+                'P1': 'priority-p1', '中': 'priority-medium',
+                'P2': 'priority-p2', '低': 'priority-low',
+                '普通': 'priority-normal'
+            };
+            return map[priority] || 'priority-normal';
+        }
+
+        function getTypeClass(type) {
+            const map = {
+                'system': 'type-system',
+                'project_issue': 'type-project',
+                'manual': 'type-manual'
+            };
+            return map[type] || 'type-manual';
+        }
+
+        function getTypeIcon(type) {
+            const map = {
+                'system': '⚙️',
+                'project_issue': '⚠️',
+                'manual': '✋'
+            };
+            return map[type] || '📋';
+        }
+
+        function getTypeLabel(type) {
+            const map = {
+                'system': '系统',
+                'project_issue': '项目问题',
+                'manual': '手工'
+            };
+            return map[type] || '其他';
+        }
+
+        function updateStats() {
+            document.getElementById('totalTasks').textContent = tasks.length;
+            document.getElementById('pendingTasks').textContent = tasks.filter(t => t.status === '待办').length;
+            document.getElementById('doneTasks').textContent = tasks.filter(t => t.status === '已完成').length;
+            document.getElementById('updateTime').textContent = new Date().toISOString().split('T')[0];
+        }
+
+        // 筛选
+        function applyFilters() {
+            currentCategory = document.getElementById('filterCategory').value;
+            currentPriority = document.getElementById('filterPriority').value;
+            renderTasks();
+        }
+
+        // 标签页点击
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.type;
+                renderTasks();
+            });
+        });
+
+        // 快捷筛选
+        function showAllTasks() {
+            currentFilter = 'all';
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.tab[data-type="all"]').classList.add('active');
+            renderTasks();
+        }
+
+        function showP0Tasks() {
+            document.getElementById('filterPriority').value = 'P0';
+            applyFilters();
+        }
+
+        function showOverdueTasks() {
+            const today = new Date();
+            const overdue = tasks.filter(t => new Date(t.due_date) < today && t.status === '待办');
+            const taskList = document.getElementById('taskList');
+            
+            if (overdue.length === 0) {
+                taskList.innerHTML = '<li class="empty-state">没有过期任务 🎉</li>';
+            } else {
+                taskList.innerHTML = overdue.map(task => {
+                    const priorityClass = getPriorityClass(task.priority);
+                    return `
+                        <li class="task-item project-section">
+                            <input type="checkbox" class="task-checkbox" onchange="toggleTask('${task.id}')">
+                            <div class="task-content">
+                                <div class="task-title">⚠️ ${task.title}</div>
+                                <div class="task-meta">
+                                    <span class="task-priority ${priorityClass}">${task.priority}</span>
+                                    <span class="task-overdue">📅 已过期: ${task.due_date}</span>
+                                </div>
+                            </div>
+                        </li>
+                    `;
+                }).join('');
+            }
+        }
+
+        function markAllDone() {
+            if (confirm('确定要将所有待办任务标记为已完成？')) {
+                tasks.forEach(t => { if (t.status === '待办') t.status = '已完成'; });
+                renderTasks();
+                saveTasks();
+            }
+        }
+
+        // 切换任务状态
+        function toggleTask(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (task) {
+                task.status = task.status === '待办' ? '已完成' : '待办';
+                renderTasks();
+                saveTasks();
+            }
+        }
+
+        // 添加手工任务
+        function addManualTask() {
+            const title = document.getElementById('newTaskTitle').value.trim();
+            const priority = document.getElementById('newTaskPriority').value;
+            const dueDate = document.getElementById('newTaskDate').value;
+            
+            if (!title) {
+                alert('请输入任务内容');
+                return;
+            }
+            
+            tasks.push({
+                id: 'manual_' + Date.now(),
+                title: title,
+                description: '',
+                due_date: dueDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                category: '其他',
+                priority: priority,
+                status: '待办',
+                source: '手工添加',
+                task_type: 'manual',
+                file_path: null
+            });
+            
+            document.getElementById('newTaskTitle').value = '';
+            renderTasks();
+            saveTasks();
+        }
+
+        // 打开文件
+        function openFile(filePath) {
+            alert(`📁 文件路径：${filePath}\n\n（点击跳转文件管理页面或下载）`);
+            // 实际可以跳转到：window.location.href = '/files?path=' + encodeURIComponent(filePath);
+        }
+
+        // 显示任务详情
+        function showTaskDetail(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+            
+            const fileSection = task.file_path 
+                ? `<p><strong>关联文件：</strong><span class="file-link" onclick="openFile('${task.file_path}')">${task.file_path.split('/').pop()}</span></p>` 
+                : '';
+            
+            document.getElementById('modalTitle').textContent = task.title;
+            document.getElementById('modalContent').innerHTML = `
+                <p><strong>描述：</strong>${task.description || '无'}</p>
+                <p><strong>分类：</strong>${task.category}</p>
+                <p><strong>优先级：</strong><span class="task-priority ${getPriorityClass(task.priority)}">${task.priority}</span></p>
+                <p><strong>类型：</strong><span class="task-type ${getTypeClass(task.task_type)}">${getTypeLabel(task.task_type)}</span></p>
+                <p><strong>截止日期：</strong>${task.due_date}</p>
+                <p><strong>状态：</strong>${task.status}</p>
+                ${fileSection}
+            `;
+            document.getElementById('taskModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('taskModal').classList.remove('active');
+        }
+
+        // 保存到本地
+        function saveTasks() {
+            localStorage.setItem('workbench_tasks', JSON.stringify(tasks));
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('workbench_tasks');
+            if (saved) {
+                try {
+                    const savedTasks = JSON.parse(saved);
+                    savedTasks.forEach(savedTask => {
+                        const original = tasks.find(t => t.id === savedTask.id);
+                        if (original) original.status = savedTask.status;
+                    });
+                } catch (e) {}
+            }
+            renderTasks();
+            
+            // 默认截止日期：一周后
+            const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+            document.getElementById('newTaskDate').value = nextWeek;
+        });
+
+        // 点击模态框外部关闭
+        document.getElementById('taskModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
         });
     </script>
 </body>
