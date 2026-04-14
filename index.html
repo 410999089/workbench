@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>叶哥的搬砖生涯 - 工作台</title>
+    <title>🔨叶哥的搬砖生涯 - 工作台</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -16,6 +16,7 @@
         .header { text-align: center; color: white; margin-bottom: 30px; }
         .header h1 { font-size: 2.5em; margin-bottom: 10px; }
         .header p { opacity: 0.9; }
+        .gold-text { background: linear-gradient(180deg, #ffd700 0%, #ffaa00 50%, #ff8c00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); font-weight: bold; }
         .stats { display: flex; gap: 20px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
         .stat-item { background: rgba(255,255,255,0.2); padding: 15px 30px; border-radius: 12px; text-align: center; }
         .stat-value { font-size: 2em; font-weight: bold; }
@@ -101,8 +102,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📋 叶哥的搬砖生涯</h1>
-            <p>躺平式自动化办公系统</p>
+            <h1 class="gold-text">🔨叶哥的搬砖生涯</h1>
+            <p><span id="retirement" class="gold-text"></span></p>
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-value" id="totalTasks">0</div>
@@ -211,6 +212,20 @@
     </div>
 
     <script>
+        // 退休倒计时
+        function updateRetirement() {
+            const target = new Date("2036-01-09");
+            const now = new Date();
+            const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+            const el = document.getElementById("retirement");
+            if (el) {
+                el.textContent = "2036.01.09 渡劫成功 还要摸鱼度日 " + diff + " 天 ☀️";
+            }
+        }
+        updateRetirement();
+        // 每分钟更新一次
+        setInterval(updateRetirement, 60000);
+
         // 任务数据（从云端同步）
         const tasks = [{"id":"task_001","title":"【文件关联】优化项目名称自动提取算法","description":"当前项目名称提取不准确，如'保安'被拆成3个项目。需要优化正则匹配规则，提高项目识别准确率","due_date":"2026-04-20","category":"技术开发","priority":"P0","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_002","title":"【文件关联】添加前端项目视图","description":"实现项目看板视图，支持查看项目全貌、生命周期状态、关联文件列表","due_date":"2026-04-25","category":"前端开发","priority":"P1","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_003","title":"【文件关联】实现完整性检查提醒","description":"项目缺少'报账/发票'或'验收报告'时，自动提醒用户补充材料","due_date":"2026-04-30","category":"功能开发","priority":"P1","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_004","title":"【本地客户端】安装并配置API客户端","description":"在本地Hermes Agent安装cloud_client.py，实现与云端API通信","due_date":"2026-04-16","category":"系统配置","priority":"P0","status":"待办","source":"本地客户端开发","task_type":"system","file_path":"/local_client/cloud_client.py"},{"id":"task_005","title":"【本地客户端】解决API Key配置问题","description":"用户反馈本地Hermes API Key配置有问题，需要排查并解决连接问题","due_date":"2026-04-15","category":"问题修复","priority":"P0","status":"待办","source":"用户反馈","task_type":"system","file_path":null},{"id":"task_006","title":"【本地客户端】创建云端同步Skill","description":"给本地Hermes创建cloud_sync Skill，实现本地操作自动同步到云端API","due_date":"2026-04-18","category":"功能开发","priority":"P1","status":"待办","source":"协作方案","task_type":"system","file_path":null},{"id":"task_007","title":"【API服务】验证端口8080公网访问","description":"检查云电脑端口8080是否对公网开放，如未开放需配置内网穿透","due_date":"2026-04-15","category":"运维","priority":"P0","status":"待办","source":"API服务搭建","task_type":"system","file_path":"/api_server/cloud_api.py"},{"id":"task_008","title":"【API服务】配置ngrok内网穿透","description":"如果端口未开放，配置ngrok穿透，使本地客户端能访问云端API","due_date":"2026-04-16","category":"运维","priority":"P1","status":"待办","source":"API服务搭建","task_type":"system","file_path":null},{"id":"task_009","title":"【工作台】实现项目金额统计","description":"从已上传文件中提取金额，生成项目支出统计报表","due_date":"2026-04-25","category":"数据分析","priority":"P1","status":"待办","source":"需求分析","task_type":"system","file_path":"/analyze_relations.py"},{"id":"task_010","title":"【工作台】添加文件上传自动分类","description":"上传文件时自动识别类型(合同/发票/通知)，分配到正确分类","due_date":"2026-04-20","category":"功能开发","priority":"P1","status":"待办","source":"需求分析","task_type":"system","file_path":null},{"id":"task_011","title":"【工作台】实现合同生命周期可视化","description":"用时间轴展示合同从签订到验收的完整生命周期","due_date":"2026-04-30","category":"前端开发","priority":"P2","status":"待办","source":"文件关联分析","task_type":"system","file_path":null},{"id":"task_012","title":"【协作】确定本地Hermes协作模式","description":"决定采用方案：API客户端模式 or 任务队列模式？","due_date":"2026-04-15","category":"架构决策","priority":"P0","status":"待办","source":"协作方案","task_type":"system","file_path":null},{"id":"task_013","title":"【协作】测试本地→云端指令执行流程","description":"完整测试：本地Hermes接收指令→调用API→执行文件操作→上报结果","due_date":"2026-04-18","category":"系统测试","priority":"P1","status":"待办","source":"协作方案","task_type":"system","file_path":"/local_client/simulator.py"},{"id":"issue_001","title":"电梯维保 2024-2026年度 第1年 合同书.pdf 缺少验收报告","description":"电梯维保2024-2026年度，缺少设备验收报告","due_date":"2026-04-30","category":"项目管理","priority":"高","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/电梯维保 2024-2026年度 第1年 合同书.pdf"},{"id":"issue_002","title":"省中心机房电源线路改造合同书.docx 缺少报账/发票","description":"项目有合同但未找到报销/发票文件","due_date":"2026-04-30","category":"项目管理","priority":"高","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/省中心机房电源线路改造 2025-2025年度 第1年 合同书.docx"},{"id":"issue_003","title":"保安 2025-2027年度 第2年 合同书.pdf 缺少报销单据","description":"保安服务2025-2027第2年合同已签订，缺少对应报销单据","due_date":"2026-05-31","category":"项目管理","priority":"中","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/保安 2025-2027年度 第2年 合同书.pdf"},{"id":"issue_004","title":"四川省体育彩票管理中心UPS技术服务合同-验收.pdf 缺少发票","description":"UPS技术服务合同已验收，缺少发票","due_date":"2026-04-20","category":"项目管理","priority":"中","status":"待办","source":"项目完整性检查","task_type":"project_issue","file_path":"/uploads/综合部/四川省体育彩票管理中心UPS技术服务合同-验收.pdf"},{"id":"test001","title":"审核报销单","description":"","due_date":"2026-04-30","category":"其他","priority":"普通","status":"待办","source":"测试","task_type":"manual","file_path":null},{"id":"test002","title":"跟进合同付款","description":"","due_date":"2026-04-25","category":"其他","priority":"普通","status":"待办","source":"测试","task_type":"manual","file_path":null}];
 
