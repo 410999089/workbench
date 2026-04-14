@@ -309,7 +309,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" id="analyzeBtn" disabled>
+                    <button type="submit" class="btn btn-primary" id="analyzeBtn">
                         🔍 开始AI分析
                     </button>
                 </form>
@@ -463,7 +463,7 @@
             
             // 更新按钮状态
             const project = document.getElementById('projectSelect').value;
-            document.getElementById('analyzeBtn').disabled = !project;
+            document.getElementById('analyzeBtn').disabled = !(project && currentFile);
         }
 
         // 移除文件

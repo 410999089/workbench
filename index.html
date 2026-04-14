@@ -102,8 +102,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="gold-text">🔨叶哥的搬砖生涯</h1>
-            <p><span id="retirement" class="gold-text"></span></p>
+            <h1>🔨叶哥的搬砖生涯</h1>
+            <p><span id="retirement" style="font-size:1.3em;font-weight:bold;display:block;margin-top:8px;"></span></p>
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-value" id="totalTasks">0</div>
@@ -219,7 +219,7 @@
             const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
             const el = document.getElementById("retirement");
             if (el) {
-                el.textContent = "2036.01.09 渡劫成功 还要摸鱼度日 " + diff + " 天 ☀️";
+                el.textContent = "2036.01.09 渡劫成功    还要摸鱼度日 " + diff + " 天";
             }
         }
         updateRetirement();
